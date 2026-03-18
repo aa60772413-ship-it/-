@@ -25,10 +25,9 @@ include_once "./api/db.php";
 	</div>
 	<!-- <iframe style="display:none;" name="back" id="back"></iframe> -->
 	<div id="main">
-		<a title="" href="index.htm">
+		<a title="" href="index.php">
 			<?php
-			$row=$Title->find(['sh'=>1]);
-
+			$row=$Title->find(['sh'=>1])
 			?>
 			<div class="ti" style="background:url('./upload/<?= $row['img'] ?>'); background-size:cover;"></div><!--標題-->
 		
@@ -38,23 +37,29 @@ include_once "./api/db.php";
 				<div id="menuput" class="dbor">
 					<!--主選單放此-->
 					<span class="t botli">主選單區</span>
-				<?php
-				$rows=$Menu->all(['main_id'=>0]);
-				foreach($rows as $row):
-				?>
-				<a style="color:#000; font-size:13px; text-decoration:none;"href="<?= $row['href'] ?>">
-						<div class="mainmu"><?= $row['text'] ?></div>
-				</a>
-				<?php
-					$rows=$Menu->all(['main_id'=>$row['id']]);
-					foreach($rows as $row):?>
-				<a style="color:#000; font-size:13px; text-decoration:none;"href="<?= $row['href'] ?>">
-						<div class="mainmu2"><?= $row['text'] ?></div>
-				</a>
-					
-				<?php endforeach?>
+					<?php
+					$rows=$Menu->all(['sh'=>1]);
+					foreach($rows as $row):
+					?>
 
-					<?php endforeach?>
+					<a style="color:#000; font-size:13px; text-decoration:none;"
+						href="<?= $row['href'] ?>">
+						<div class="mainmu">
+							<?= $row['text'] ?> </div>
+					</a>
+						<?php
+						$rows=$Menu->all(['main_id'=>$row['id']]);
+						foreach($rows as $row):
+						?>					
+					<a style="color:#000; font-size:13px; text-decoration:none;"
+						href="<?= $row['href'] ?>">
+						<div class="mainmu2">
+							<?= $row['text'] ?> </div>
+					</a>		
+					
+						<?php  endforeach;?>
+					<?php  endforeach;?> 	
+
 				</div>
 				<div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
 					<span class="t">進站總人數 :<?=$Total->find(1)['text']?>
@@ -98,19 +103,18 @@ include_once "./api/db.php";
 					onclick="lo('?do=admin')">管理登入</button>
 				<div style="width:89%; height:480px;" class="dbor">
 					<span class="t botli">校園映象區</span>
-					<div><img src="./icon/up.jpg" onclick="pp(1)" alt="" srcset=""></div>
-					<?php
-					$rows=$Image->all(['sh'=>1]);
-					// dd($rows);
-					foreach ($rows as $k=>$row):
-					?>
-					<div>
-						<img  class="im" id="ssaa<?=$k?>" src="./upload/<?= $row['img'] ?>" style="width:150px;" srcset="">
+					<div onclick="pp(1)" class="cent"><img src="./icon/up.jpg" alt="" srcset=""></div>
+					<div class="cent">
+							<?php
+							$rows=$Image->all(['sh'=>1]);
+							foreach($rows as $key=>$row):
+							?>	
+							<img  class="im" id="ssaa<?= $key ?>" src="./upload/<?= $row['img']; ?>" width="150px"alt="" srcset="">
+							<?php  endforeach;?>							
 					</div>
-					<?php endforeach?>
-					<div ><img src="./icon/dn.jpg" onclick="pp(2)"  srcset=""></div>
+					<div onclick="pp(2)"class="cent"><img src="./icon/dn.jpg" alt="" srcset=""></div>
 					<script>
-						var nowpage = 0, num = <?= $Image->count(['sh'=>1]) ?>;
+						var nowpage = 0, num = 0;
 						function pp(x) {
 							var s, t;
 							if (x == 1 && nowpage - 1 >= 0) { nowpage--; }
@@ -130,7 +134,7 @@ include_once "./api/db.php";
 		<div
 			style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
 			<span class="t" style="line-height:123px;">
-						頁尾版權:<?=$Bottom->find(1)['text']?>
+				葉偉:<?=$Bottom->find(1)['text']?>
 			</span>
 		</div>
 	</div>

@@ -2,8 +2,7 @@
 include_once "db.php";
 $table = $_GET['table'];
 $DB = ${ucfirst($table)};
-dd($_POST);
-dd($_GET['main_id']);
+// dd($_POST);
 foreach($_POST['id'] as $k=>$id){
     if (isset($_POST['del']) && in_array($id, $_POST['del'])) {
         $DB->del($id);
@@ -27,7 +26,12 @@ foreach($_POST['id'] as $k=>$id){
             case 'news':
             
                 $row['text'] = ($_POST['sh']==$id)?1:0;
-
+                break;
+            case 'menu':
+                $row['text'] = $_POST['text'][$k];
+                $row['href'] = $_POST['href'][$k];
+                $row['sh'] = (isset($_POST['sh']) && in_array($id, $_POST['sh']))?1:0;
+                $row['main_id']=(isset($_GET['main_id']))?$_GET['main_id']:0;
                 break;
             case 'mem':
             
@@ -40,20 +44,12 @@ foreach($_POST['id'] as $k=>$id){
                 $row['sh'] = (isset($_POST['sh']) && in_array($id, $_POST['sh']))?1:0;
 
                 break;
-            case 'menu':
-                $row['text']=$_POST['text'][$k];
-                $row['href']=$_POST['href'][$k];
-                $row['sh'] = (isset($_POST['sh']) && in_array($id, $_POST['sh']))?1:0;
-                $row['main_id'] = (isset($_GET['main_id']))?$_GET['main_id']:0;
-                break;
-
                 
               
             default:
                 # code...
                 break;
         }
-dd($_POST);
 
         $DB->save($row);
         to("../back.php?do=$table");

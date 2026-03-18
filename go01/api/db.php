@@ -123,7 +123,6 @@ function sum($col,...$arg){
     $Total=new DB('total');
     $News=new DB('news');
     $Menu=new DB('menu');
-    // $Menu2=new DB('menu2');
 
     $Mem=new DB('mem');
 

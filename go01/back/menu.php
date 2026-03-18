@@ -20,11 +20,11 @@
 				<tr>
 					<td ><input type="text" name="text[]" value="<?= $row['text'] ?>"></td>
 					<td ><input type="text" name="href[]" value="<?= $row['href'] ?>"></td>
-					<td ><?= ${ucfirst($_GET['do'])}->count(['main_id'=>$row['id']]); ?></td>
+					<td ><?=${ucfirst($_GET['do'])}->count(['main_id'=>$row['id']]);?></td>
 					<td ><input type="checkbox" name="sh[]" value="<?= $row['id'] ?>" <?= ($row['sh']==1) ?"checked":""?>></td>
 					<td ><input type="checkbox" name="del[]" value=<?= $row['id'] ?>></td>
 					<input type="hidden" name="id[]" value="<?= $row['id'] ?>" >
-					<td><input type="button" value="編輯次選單" onclick="location.href='?do=menu2&table=<?= $do; ?>&id=<?= $row['id'] ?>'";></td>
+					<td><input type="button" value="編輯次選單" onclick="location.href='?do=submenu&table=<?= $do; ?>&id=<?= $row['id'] ?>'"></td>
 				</tr>
 				<?php endforeach ?>
 			</tbody>

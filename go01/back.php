@@ -78,7 +78,7 @@ include_once "./api/db.php";
 
 				</div>
 				<div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
-					<span class="t">進站總人數 :<?=$Total->find(1)['total']?>
+					<span class="t">進站總人數 :<?=$Total->find(1)['text']?>
 						 </span>
 				</div>
 			</div>
@@ -91,7 +91,7 @@ include_once "./api/db.php";
 							<td style="width:70%;font-weight:800; border:#333 1px solid; border-radius:3px;"
 								class="cent"><a href="?do=admin" style="color:#000; text-decoration:none;">後台管理區</a>
 							</td>
-							<td><button onclick="document.cookie='user=';location.replace('?')"
+							<td><button onclick="location.href='index.php'"
 									style="width:99%; margin-right:2px; height:50px;">管理登出</button></td>
 						</tr>
 					</tbody>
